@@ -1,12 +1,24 @@
-//declare global variables
-let cards = []
+//declare global variables/array/objects
+let cards = [] //array
 let sum = 0
 let hasBlackJack = false
 let isAlive = false
 let message = ``
+let player = {
+    name: "Player",
+    chips: 100,
+}
+
+//reference elements in html
 let messageEl = document.getElementById(`message-el`)
 let sumEl = document.getElementById(`sum-el`)
 let cardsEl = document.getElementById(`cards-el`)
+let playerEl = document.getElementById("player-el")
+
+
+//Functions / Code
+
+playerEl.textContent = `${player.name}: R${player.chips}`
 
 function getRandomCard() { //get a random number beetween 2 and 12(including 12)
     let randomNumer = Math.floor( Math.random()*13 ) + 1
@@ -20,11 +32,18 @@ function getRandomCard() { //get a random number beetween 2 and 12(including 12)
 }
 
 function startGame() {
+    //initialize
     isAlive = true
+    hasBlackJack = false
     let firstCard = getRandomCard()
     let secondCard = getRandomCard()
+    
+    //clear previous cards from array and add new:
+    cards = []
     cards.push(firstCard, secondCard)
     sum = firstCard + secondCard
+
+    //call function to run game
     renderGame() 
 }
 
@@ -35,6 +54,7 @@ function renderGame() {
         cardsEl.textContent += `${cards[i]} `
     }
     sumEl.textContent = `Sum: ` + sum
+
     //Determine where the player is with their blackjack
     if (sum <= 20) { //
         message = `Do you want to draw a new card?`
@@ -46,6 +66,7 @@ function renderGame() {
         isAlive = false
     }
     //display the message
+
     messageEl.textContent = message  
 }
 
@@ -53,6 +74,7 @@ function newCard() {console.log(`Drawing a new card from the deck!`)
     if (isAlive === true && hasBlackJack === false) {
         //declare local variable for function
         let card = getRandomCard()
+
         //add the new card value to cards array & sum var
         cards.push(card)
         sum += card
