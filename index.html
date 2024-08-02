@@ -7,6 +7,7 @@
     <title>BlackJack ♠️♥️♦️♣️</title>
 </head>
     <body>
+        <h5>ONE STOP</h5>
         <h1>Blackjack</h1>
         <p id="message-el">Want to play a round?</p>
         <p id="cards-el">Cards:</p>
@@ -15,8 +16,14 @@
         <button onclick="startGame()"> START GAME </button>
         <button onclick="newCard()"> NEW CARD </button>
 
-        <p id="player-el"></p>
-
+        <div id="balance">
+            <div class="bet">
+                <p id="bet-el"></p>
+                <button id="addbet-btn" onclick="bet(`add`)">+</button>
+                <button id="minbet-btn" onclick="bet(`min`)">-</button>
+            </div>
+            <p id="player-el"></p>
+        </div>
         <script src="index.js"></script>
     </body>
 </html>
