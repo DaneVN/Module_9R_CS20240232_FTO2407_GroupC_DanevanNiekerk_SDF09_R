@@ -6,7 +6,7 @@ let isAlive = false
 let message = ``
 let player = {
     name: "You",
-    chips: 0,
+    chips: 250,
     bet: 0,
 }
 
@@ -33,6 +33,7 @@ function getRandomCard() { //get a random number beetween 2 and 12(including 12)
 }
 
 function startGame() {
+    if (player.bet > 0) {
         if (player.chips > 0) {
             //initialize
             isAlive = true
@@ -51,6 +52,7 @@ function startGame() {
             messageEl.textContent = `You don't even enough cents for chicken nuggets, dude.
             STOP`
         }
+    }else messageEl.textContent = `Calm your rocker, man. You have to place a bet first`
 }
 
 function renderGame() {
@@ -70,7 +72,7 @@ function renderGame() {
         player.bet = 0
         hasBlackJack = true
     } else {
-        message = `You're out of the game!`
+        message = `Ouch! That'll hurt the wallet.`
         player.chips -= (player.bet)
         player.bet = 0
         isAlive = false
@@ -84,7 +86,7 @@ function renderGame() {
 
 function renderBalance() {
     playerEl.textContent = `${player.name}: R${player.chips}`
-    if (player.bet === player.chips && player.chips<0) {
+    if (player.bet === player.chips && player.chips < 0) {
         betEl.textContent = `All in!`
     } else {
     betEl.textContent = `Bet: R${player.bet}`
